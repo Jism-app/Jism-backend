@@ -1,0 +1,105 @@
+// Seed data for the `exercises` table. Movement-pattern and equipment
+// values match the CHECK constraints in physiqueai_schema.sql exactly.
+// This is a starting catalog (spec calls for 60-100) — reviewed for
+// correctness of muscle groups and rep ranges, but expect to extend this
+// list as Training Engine (Sprint 7) surfaces gaps in specific patterns
+// or equipment combinations.
+
+export interface ExerciseSeed {
+  name: string;
+  primary_muscles: string[];
+  secondary_muscles: string[];
+  equipment: string[];
+  movement_pattern: 'push' | 'pull' | 'squat' | 'hinge' | 'carry' | 'isolation';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  default_rep_range_min: number;
+  default_rep_range_max: number;
+  recommended_rir: number;
+  contraindications: string[];
+}
+
+export const EXERCISE_SEED: ExerciseSeed[] = [
+  // ---------- PUSH ----------
+  { name: 'Barbell Bench Press', primary_muscles: ['chest'], secondary_muscles: ['triceps', 'front_delts'], equipment: ['barbell'], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 5, default_rep_range_max: 10, recommended_rir: 2, contraindications: ['shoulder_impingement'] },
+  { name: 'Dumbbell Bench Press', primary_muscles: ['chest'], secondary_muscles: ['triceps', 'front_delts'], equipment: ['dumbbells'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Incline Barbell Bench Press', primary_muscles: ['upper_chest'], secondary_muscles: ['triceps', 'front_delts'], equipment: ['barbell'], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 10, recommended_rir: 2, contraindications: [] },
+  { name: 'Incline Dumbbell Press', primary_muscles: ['upper_chest'], secondary_muscles: ['triceps', 'front_delts'], equipment: ['dumbbells'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Machine Chest Press', primary_muscles: ['chest'], secondary_muscles: ['triceps'], equipment: ['machines'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Push-Up', primary_muscles: ['chest'], secondary_muscles: ['triceps', 'front_delts', 'core'], equipment: [], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 20, recommended_rir: 2, contraindications: [] },
+  { name: 'Overhead Barbell Press', primary_muscles: ['shoulders'], secondary_muscles: ['triceps', 'upper_chest'], equipment: ['barbell'], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 5, default_rep_range_max: 10, recommended_rir: 2, contraindications: ['shoulder_impingement'] },
+  { name: 'Seated Dumbbell Shoulder Press', primary_muscles: ['shoulders'], secondary_muscles: ['triceps'], equipment: ['dumbbells'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Machine Shoulder Press', primary_muscles: ['shoulders'], secondary_muscles: ['triceps'], equipment: ['machines'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Cable Chest Fly', primary_muscles: ['chest'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Dumbbell Lateral Raise', primary_muscles: ['side_delts'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Cable Lateral Raise', primary_muscles: ['side_delts'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Triceps Pushdown', primary_muscles: ['triceps'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Overhead Triceps Extension', primary_muscles: ['triceps'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: ['elbow_pain'] },
+  { name: 'Dips', primary_muscles: ['chest', 'triceps'], secondary_muscles: ['front_delts'], equipment: ['pull_up_bar'], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['shoulder_impingement'] },
+  { name: 'Close-Grip Bench Press', primary_muscles: ['triceps'], secondary_muscles: ['chest'], equipment: ['barbell'], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 10, recommended_rir: 2, contraindications: [] },
+  { name: 'Resistance Band Chest Press', primary_muscles: ['chest'], secondary_muscles: ['triceps'], equipment: ['resistance_bands'], movement_pattern: 'push', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 2, contraindications: [] },
+  { name: 'Pike Push-Up', primary_muscles: ['shoulders'], secondary_muscles: ['triceps'], equipment: [], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['shoulder_impingement'] },
+
+  // ---------- PULL ----------
+  { name: 'Pull-Up', primary_muscles: ['lats'], secondary_muscles: ['biceps', 'upper_back'], equipment: ['pull_up_bar'], movement_pattern: 'pull', difficulty: 'intermediate', default_rep_range_min: 4, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Chin-Up', primary_muscles: ['lats', 'biceps'], secondary_muscles: ['upper_back'], equipment: ['pull_up_bar'], movement_pattern: 'pull', difficulty: 'intermediate', default_rep_range_min: 4, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Lat Pulldown', primary_muscles: ['lats'], secondary_muscles: ['biceps'], equipment: ['cables'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Barbell Bent-Over Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['barbell'], movement_pattern: 'pull', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 10, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Dumbbell Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['dumbbells'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: [] },
+  { name: 'Seated Cable Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['cables'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Machine Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['machines'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'T-Bar Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['barbell'], movement_pattern: 'pull', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 12, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Face Pull', primary_muscles: ['rear_delts'], secondary_muscles: ['upper_back'], equipment: ['cables'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Barbell Curl', primary_muscles: ['biceps'], secondary_muscles: [], equipment: ['barbell'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 1, contraindications: [] },
+  { name: 'Dumbbell Curl', primary_muscles: ['biceps'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Hammer Curl', primary_muscles: ['biceps', 'forearms'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Cable Curl', primary_muscles: ['biceps'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Resistance Band Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['resistance_bands'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 2, contraindications: [] },
+  { name: 'Inverted Row', primary_muscles: ['upper_back'], secondary_muscles: ['lats', 'biceps'], equipment: ['pull_up_bar'], movement_pattern: 'pull', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Straight-Arm Pulldown', primary_muscles: ['lats'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+
+  // ---------- SQUAT ----------
+  { name: 'Barbell Back Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['hamstrings', 'core'], equipment: ['barbell'], movement_pattern: 'squat', difficulty: 'intermediate', default_rep_range_min: 5, default_rep_range_max: 10, recommended_rir: 2, contraindications: ['knee_pain', 'lower_back_pain'] },
+  { name: 'Barbell Front Squat', primary_muscles: ['quads'], secondary_muscles: ['glutes', 'core'], equipment: ['barbell'], movement_pattern: 'squat', difficulty: 'advanced', default_rep_range_min: 5, default_rep_range_max: 8, recommended_rir: 2, contraindications: ['knee_pain', 'wrist_pain'] },
+  { name: 'Goblet Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['core'], equipment: ['dumbbells'], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['knee_pain'] },
+  { name: 'Leg Press', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['hamstrings'], equipment: ['machines'], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['knee_pain'] },
+  { name: 'Bodyweight Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: [], equipment: [], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 25, recommended_rir: 2, contraindications: [] },
+  { name: 'Bulgarian Split Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['hamstrings'], equipment: ['dumbbells'], movement_pattern: 'squat', difficulty: 'intermediate', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: ['knee_pain'] },
+  { name: 'Walking Lunge', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['hamstrings'], equipment: ['dumbbells'], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 20, recommended_rir: 2, contraindications: ['knee_pain'] },
+  { name: 'Leg Extension', primary_muscles: ['quads'], secondary_muscles: [], equipment: ['machines'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: ['knee_pain'] },
+  { name: 'Hack Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: [], equipment: ['machines'], movement_pattern: 'squat', difficulty: 'intermediate', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: ['knee_pain'] },
+  { name: 'Step-Up', primary_muscles: ['quads', 'glutes'], secondary_muscles: ['hamstrings'], equipment: ['dumbbells'], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['knee_pain'] },
+
+  // ---------- HINGE ----------
+  { name: 'Conventional Deadlift', primary_muscles: ['hamstrings', 'glutes', 'lower_back'], secondary_muscles: ['upper_back', 'forearms'], equipment: ['barbell'], movement_pattern: 'hinge', difficulty: 'advanced', default_rep_range_min: 3, default_rep_range_max: 8, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Romanian Deadlift', primary_muscles: ['hamstrings', 'glutes'], secondary_muscles: ['lower_back'], equipment: ['barbell'], movement_pattern: 'hinge', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 12, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Dumbbell Romanian Deadlift', primary_muscles: ['hamstrings', 'glutes'], secondary_muscles: ['lower_back'], equipment: ['dumbbells'], movement_pattern: 'hinge', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Hip Thrust', primary_muscles: ['glutes'], secondary_muscles: ['hamstrings'], equipment: ['barbell'], movement_pattern: 'hinge', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+  { name: 'Glute Bridge', primary_muscles: ['glutes'], secondary_muscles: ['hamstrings'], equipment: [], movement_pattern: 'hinge', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 20, recommended_rir: 2, contraindications: [] },
+  { name: 'Good Morning', primary_muscles: ['hamstrings', 'lower_back'], secondary_muscles: ['glutes'], equipment: ['barbell'], movement_pattern: 'hinge', difficulty: 'advanced', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Kettlebell Swing', primary_muscles: ['glutes', 'hamstrings'], secondary_muscles: ['lower_back', 'core'], equipment: ['dumbbells'], movement_pattern: 'hinge', difficulty: 'intermediate', default_rep_range_min: 12, default_rep_range_max: 25, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Lying Leg Curl', primary_muscles: ['hamstrings'], secondary_muscles: [], equipment: ['machines'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Seated Leg Curl', primary_muscles: ['hamstrings'], secondary_muscles: [], equipment: ['machines'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Cable Pull-Through', primary_muscles: ['glutes', 'hamstrings'], secondary_muscles: ['lower_back'], equipment: ['cables'], movement_pattern: 'hinge', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 2, contraindications: [] },
+
+  // ---------- CARRY ----------
+  { name: 'Farmers Carry', primary_muscles: ['forearms', 'core'], secondary_muscles: ['upper_back'], equipment: ['dumbbells'], movement_pattern: 'carry', difficulty: 'beginner', default_rep_range_min: 1, default_rep_range_max: 1, recommended_rir: 1, contraindications: ['lower_back_pain'] },
+  { name: 'Suitcase Carry', primary_muscles: ['core', 'forearms'], secondary_muscles: ['upper_back'], equipment: ['dumbbells'], movement_pattern: 'carry', difficulty: 'beginner', default_rep_range_min: 1, default_rep_range_max: 1, recommended_rir: 1, contraindications: ['lower_back_pain'] },
+  { name: 'Overhead Carry', primary_muscles: ['shoulders', 'core'], secondary_muscles: ['upper_back'], equipment: ['dumbbells'], movement_pattern: 'carry', difficulty: 'intermediate', default_rep_range_min: 1, default_rep_range_max: 1, recommended_rir: 1, contraindications: ['shoulder_impingement'] },
+
+  // ---------- ISOLATION / ACCESSORY ----------
+  { name: 'Plank', primary_muscles: ['core'], secondary_muscles: [], equipment: [], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 1, default_rep_range_max: 1, recommended_rir: 1, contraindications: [] },
+  { name: 'Hanging Leg Raise', primary_muscles: ['core'], secondary_muscles: ['forearms'], equipment: ['pull_up_bar'], movement_pattern: 'isolation', difficulty: 'intermediate', default_rep_range_min: 8, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Cable Crunch', primary_muscles: ['core'], secondary_muscles: [], equipment: ['cables'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Ab Wheel Rollout', primary_muscles: ['core'], secondary_muscles: ['lats'], equipment: [], movement_pattern: 'isolation', difficulty: 'advanced', default_rep_range_min: 6, default_rep_range_max: 12, recommended_rir: 1, contraindications: ['lower_back_pain'] },
+  { name: 'Russian Twist', primary_muscles: ['core'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Calf Raise', primary_muscles: ['calves'], secondary_muscles: [], equipment: ['machines'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Standing Calf Raise', primary_muscles: ['calves'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 25, recommended_rir: 1, contraindications: [] },
+  { name: 'Reverse Fly', primary_muscles: ['rear_delts'], secondary_muscles: ['upper_back'], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 20, recommended_rir: 1, contraindications: [] },
+  { name: 'Shrugs', primary_muscles: ['traps'], secondary_muscles: [], equipment: ['dumbbells'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 10, default_rep_range_max: 15, recommended_rir: 1, contraindications: [] },
+  { name: 'Preacher Curl', primary_muscles: ['biceps'], secondary_muscles: [], equipment: ['barbell'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 1, contraindications: ['elbow_pain'] },
+  { name: 'Skull Crusher', primary_muscles: ['triceps'], secondary_muscles: [], equipment: ['barbell'], movement_pattern: 'isolation', difficulty: 'intermediate', default_rep_range_min: 8, default_rep_range_max: 12, recommended_rir: 1, contraindications: ['elbow_pain'] },
+  { name: 'Band Pull-Apart', primary_muscles: ['rear_delts'], secondary_muscles: ['upper_back'], equipment: ['resistance_bands'], movement_pattern: 'isolation', difficulty: 'beginner', default_rep_range_min: 15, default_rep_range_max: 25, recommended_rir: 1, contraindications: [] },
+  { name: 'Band Squat', primary_muscles: ['quads', 'glutes'], secondary_muscles: [], equipment: ['resistance_bands'], movement_pattern: 'squat', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 25, recommended_rir: 2, contraindications: [] },
+  { name: 'Band Deadlift', primary_muscles: ['hamstrings', 'glutes'], secondary_muscles: ['lower_back'], equipment: ['resistance_bands'], movement_pattern: 'hinge', difficulty: 'beginner', default_rep_range_min: 12, default_rep_range_max: 25, recommended_rir: 2, contraindications: ['lower_back_pain'] },
+  { name: 'Diamond Push-Up', primary_muscles: ['triceps'], secondary_muscles: ['chest'], equipment: [], movement_pattern: 'push', difficulty: 'intermediate', default_rep_range_min: 6, default_rep_range_max: 15, recommended_rir: 1, contraindications: ['elbow_pain', 'wrist_pain'] },
+];
