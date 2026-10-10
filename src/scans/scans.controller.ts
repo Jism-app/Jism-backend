@@ -16,6 +16,14 @@ import { SupabaseJwtPayload } from '../auth/supabase-auth.guard';
 import { ScansService, UploadedAngleFile } from './scans.service';
 import { listScansSchema, SCAN_ANGLES, ScanAngle } from './dto/scan.dto';
 
+// Local shape instead of Express.Multer.File — avoids depending on
+// @types/multer's global namespace augmentation, which has been
+// inconsistent across versions. We only ever read mimetype + buffer.
+interface UploadedFile {
+  mimetype: string;
+  buffer: Buffer;
+}
+
 // 8MB per image is generous for a phone-camera JPEG at the resolution
 // the capture flow targets; reject anything larger up front rather than
 // buffering an oversized upload into memory.
@@ -36,7 +44,7 @@ export class ScansController {
   async create(
     @CurrentUser() user: SupabaseJwtPayload,
     @UploadedFiles()
-    files: Record<ScanAngle, Express.Multer.File[]>,
+    files: Record<ScanAngle, UploadedFile[]>,
   ) {
     const angleFiles: UploadedAngleFile[] = [];
     for (const angle of SCAN_ANGLES) {

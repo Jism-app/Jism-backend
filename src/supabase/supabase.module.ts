@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { createClient } from '@supabase/supabase-js';
+import WebSocket from 'ws';
 import { SUPABASE_CLIENT } from './supabase.constants';
 
 // Global so every feature module (profiles, nutrition, training, ...) can
@@ -29,6 +30,15 @@ import { SUPABASE_CLIENT } from './supabase.constants';
         }
         return createClient(url, serviceRoleKey, {
           auth: { persistSession: false },
+          // Node 20 has no native WebSocket global (that only landed in
+          // Node 22), and supabase-js's RealtimeClient constructor throws
+          // on startup if it can't find one — even though this backend
+          // doesn't use Realtime features yet. Pass the `ws` package
+          // explicitly rather than relying on auto-detection, which
+          // doesn't actually happen despite what the error message implies.
+          realtime: {
+            transport: WebSocket as unknown as typeof globalThis.WebSocket,
+          },
         });
       },
     },
