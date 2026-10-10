@@ -1,7 +1,7 @@
 {
-  "name": "physiqueai-backend",
+  "name": "cadenique-backend",
   "version": "0.0.1",
-  "description": "PhysiqueAI NestJS API — custom business logic (nutrition, training, vision-ai, adaptation)",
+  "description": "CADENIQUE NestJS API — custom business logic (nutrition, training, vision-ai, adaptation)",
   "scripts": {
     "build": "nest build",
     "start": "nest start",
