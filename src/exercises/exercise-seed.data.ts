@@ -1,5 +1,5 @@
 // Seed data for the `exercises` table. Movement-pattern and equipment
-// values match the CHECK constraints in physiqueai_schema.sql exactly.
+// values match the CHECK constraints in cadenique_schema.sql exactly.
 // This is a starting catalog (spec calls for 60-100) — reviewed for
 // correctness of muscle groups and rep ranges, but expect to extend this
 // list as Training Engine (Sprint 7) surfaces gaps in specific patterns

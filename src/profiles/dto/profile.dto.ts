@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // Mirrors the CHECK constraints on the `profiles` table exactly. Keeping
-// these in sync with physiqueai_schema.sql matters: a mismatch here means
+// these in sync with cadenique_schema.sql matters: a mismatch here means
 // requests that pass validation still fail at the DB with a raw Postgres
 // constraint error instead of a clean 400.
 
