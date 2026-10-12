@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { ProfilesModule } from './profiles/profiles.module';
 import { ExercisesModule } from './exercises/exercises.module';
 import { NutritionModule } from './nutrition/nutrition.module';
+import { ScansModule } from './scans/scans.module';
 
 // Remaining modules get populated as their sprints land.
 // import { ScansModule } from './scans/scans.module';
@@ -24,6 +25,7 @@ import { NutritionModule } from './nutrition/nutrition.module';
     ProfilesModule,
     ExercisesModule,
     NutritionModule,
+     ScansModule,
     // ScansModule, VisionAiModule,
     // TrainingModule, AdaptationModule, CoachModule, SubscriptionsModule,
   ],
